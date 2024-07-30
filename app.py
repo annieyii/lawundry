@@ -19,11 +19,9 @@ def allowed_file(filename):
 @app.route('/')
 def home():
     return render_template('about.html')
-
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 @app.route('/index')
 def index():
     return render_template('index.html')
@@ -50,13 +48,16 @@ def upload_file():
     else:
         return jsonify({"success": False, "error": "File type not allowed"}), 400
 
+# 把 upload 的 pic 丟到 uploads file 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+# run .sh file
 @app.route('/run-script', methods=['POST'])
 def run_script():
     try:
+        result = subprocess.run(['./runCode.sh', 'arg1', 'arg2'], capture_output=True, text=True)
 
         with open('HSVresult.txt', 'r') as file:
             hsv = file.read().strip()
