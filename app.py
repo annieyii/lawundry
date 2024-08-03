@@ -4,17 +4,11 @@ from werkzeug.utils import secure_filename
 import subprocess
 
 app = Flask(__name__)
+
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 FILENAMES = []
-
-# 确保上传文件夹存在
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def home():
@@ -29,6 +23,14 @@ def index():
 @app.route('/css/<path:path>')
 def send_css(path):
     return send_from_directory('css', path)
+
+# 确保上传文件夹存在
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -57,14 +59,16 @@ def uploaded_file(filename):
 @app.route('/run-script', methods=['POST'])
 def run_script():
     try:
-        result = subprocess.run(['./runCode.sh', 'arg1', 'arg2'], capture_output=True, text=True)
+        result = subprocess.run(['./runOverall.sh', 'arg1', 'arg2'], capture_output=True, text=True, check=True)
 
-        with open('HSVresult.txt', 'r') as file:
-            hsv = file.read().strip()
-        with open('SSIMresult.txt', 'r') as file:
-            ssim = file.read().strip()
+        with open('HSVresult.txt', 'r') as hsv_file:
+            hsv = hsv_file.read().strip()
+            print("HSV result:", hsv)
+        with open('SSIMresult.txt', 'r') as ssim_file:
+            ssim = ssim_file.read().strip()
+            print("SSIM result:", ssim)
         
-        return render_template('index.html', ssim=ssim, hsv=hsv)
+        return jsonify({"success": True, "ssim": ssim, "hsv": hsv}), 200
 
         # return jsonify({"success": True, "output": result.stdout}), 200
     except subprocess.CalledProcessError as e:

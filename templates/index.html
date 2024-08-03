@@ -45,11 +45,11 @@
                     <div class="result-items-row"> 
                         <div class="result-item">
                             <div class="result-description">SSIM</div>                               
-                            <div class="result-value"> {{ ssim }} </div>                                
+                            <div class="result-value" id="ssim-result"></div>
                         </div>
                         <div class="result-item">
                             <div class="result-description">HSV</div>
-                            <div class="result-value"> {{ hsv }} </div>
+                            <div class="result-value" id="hsv-result"></div>
                         </div>
                     </div>
 
@@ -127,16 +127,19 @@
                 const imageBox1 = document.getElementById('image-box1');
                 const imageBox2 = document.getElementById('image-box2');
                 if (imageBox1.innerHTML !== 'image 1' && imageBox2.innerHTML !== 'image 2') {
-                    // 如果兩個圖片都已經上傳，則顯示 #post-upload-content
-                    document.getElementById('post-upload-content').style.display = 'block';
                     // 发送请求执行 .sh 文件
                     fetch('/run-script', {
-                            method: 'POST'
-                        })
-                          .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                console.log('Script executed successfully.');
+                        method: 'POST'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('ssim-result').innerText = data.ssim;
+                            document.getElementById('hsv-result').innerText = data.hsv;
+                            console.log('Script executed successfully.');
+                            
+                            // 如果兩個圖片都已經上傳，則顯示 #post-upload-content
+                            document.getElementById('post-upload-content').style.display = 'block';
                             } else {
                                 alert('Script execution failed.');
                             }
