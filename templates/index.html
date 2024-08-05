@@ -1,4 +1,20 @@
-{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trademark Comparison System</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">Trademark Comparison System</div>
+            <div class="nav"> 
+              <a href="/about" class="nav-link">About Us</a>
+              <a href="/index" class="nav-link">Comprision System</a>
+            </div>
+        </div> 
 <!--圖片上傳-->
         <div class="content">
             <div class="section">
@@ -21,7 +37,7 @@
             <div class="divider"></div>
 <!--輸出結果-->
             <div id="post-upload-content" style="display: none;">
-<!--overall-->                
+<!--overall cmp-->                
                 <div class="section">
                     <div class="section-title">Overall Comparison</div>
                     <div class="section-subtitle">Comparing entire images through SSIM and HSV</div>
@@ -39,7 +55,7 @@
 
                 </div>
                 <div class="divider"></div>
-<!--partial-->
+<!--partial cmp-->
                 <div class="section">
                     <div class="section-title">Partial Feature Comparison</div>
                     <div class="section-subtitle">Comparing YOLO-extracted features using SSIM and HSV.</div>
@@ -86,11 +102,8 @@
                 </div>
             </div>
 <!--尾巴-->
-            <div class="footer">
-                <div class="footer-text">© 2022 Trademark Comparison System. All Rights Reserved.</div>
-            </div>  
-        </div>
-    </div>
+{% include 'footer.html' %}
+    
 <!--script-->
 <script>
     function uploadImage(imageBoxId, fileInputId) {

@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify, send_from_directory, render_template
 import os
 from werkzeug.utils import secure_filename
 import subprocess
-import uuid
 
 app = Flask(__name__)
 
@@ -42,6 +41,7 @@ def upload_file():
         return jsonify({"success": False, "error": "No selected file"}), 400
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         FILENAMES.append(filename)
         with open('filenames.txt', 'w') as f:
             for name in FILENAMES:
