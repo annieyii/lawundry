@@ -110,6 +110,7 @@
         const fileInput = document.getElementById(fileInputId);
         const formData = new FormData();
         formData.append('file', fileInput.files[0]);
+        formData.append('box_id', imageBoxId);
 
         fetch('/upload', {
             method: 'POST',
@@ -123,7 +124,7 @@
                 // 檢查兩個圖片是否都已經上傳
                 const imageBox1 = document.getElementById('image-box1');
                 const imageBox2 = document.getElementById('image-box2');
-                if (imageBox1.innerHTML !== 'image 1' && imageBox2.innerHTML !== 'image 2') {
+                if (imageBox1.innerHTML.includes('<img') && imageBox2.innerHTML.includes('<img')) {
                     // 发送请求执行 .sh 文件
                     fetch('/run-script', {
                         method: 'POST'

@@ -8,7 +8,7 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-FILENAMES = []
+FILENAMES = ["", ""] # filename 永遠只有2個
 
 @app.route('/')
 def home():
@@ -37,12 +37,21 @@ def upload_file():
     if 'file' not in request.files:
         return jsonify({"success": False, "error": "No file part"}), 400
     file = request.files['file']
+    box_id = request.form['box_id']
     if file.filename == '':
         return jsonify({"success": False, "error": "No selected file"}), 400
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        FILENAMES.append(filename)
+        
+        # 根据 box_id 更新 FILENAMES
+        if box_id == 'image-box1':
+            FILENAMES[0] = filename
+        elif box_id == 'image-box2':
+            FILENAMES[1] = filename
+        else:
+            return jsonify({"success": False, "error": "Invalid box_id"}), 400
+
         with open('filenames.txt', 'w') as f:
             for name in FILENAMES:
                 f.write(f"{name}\n")
@@ -69,8 +78,7 @@ def run_script():
             print("SSIM result:", ssim)
         
         return jsonify({"success": True, "ssim": ssim, "hsv": hsv}), 200
-
-        # return jsonify({"success": True, "output": result.stdout}), 200
+    
     except subprocess.CalledProcessError as e:
         return jsonify({"success": False, "error": e.stderr}), 500
 
