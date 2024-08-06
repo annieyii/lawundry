@@ -10,14 +10,20 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 FILENAMES = ["", ""] # filename 永遠只有2個
 
+# 用來標記是否已經執行過 before_request
+before_request_executed = False
+
 @app.route('/')
 def home():
+    run_before_request()
     return render_template('about.html')
 @app.route('/about')
 def about():
+    run_before_request()
     return render_template('about.html')
 @app.route('/index')
 def index():
+    run_before_request()
     return render_template('index.html')
 
 @app.route('/css/<path:path>')
@@ -25,11 +31,10 @@ def send_css(path):
     return send_from_directory('css', path)
 
 # Run the script before the first request
-@app.before_request
-def before_request():
+def run_before_request():
     try:
         result = subprocess.run(['./BeforeRequest.sh', 'arg1', 'arg2'], capture_output=True, text=True, check=True)
-        print("Script executed successfully")
+        print("run before request")
     except subprocess.CalledProcessError as e:
         print(f"Error executing script: {e.stderr}")
 
