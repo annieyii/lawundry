@@ -24,13 +24,21 @@ def index():
 def send_css(path):
     return send_from_directory('css', path)
 
+# Run the script before the first request
+@app.before_request
+def before_request():
+    try:
+        result = subprocess.run(['./BeforeRequest.sh', 'arg1', 'arg2'], capture_output=True, text=True, check=True)
+        print("Script executed successfully")
+    except subprocess.CalledProcessError as e:
+        print(f"Error executing script: {e.stderr}")
+
 # 确保上传文件夹存在
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -83,4 +91,5 @@ def run_script():
         return jsonify({"success": False, "error": e.stderr}), 500
 
 if __name__ == '__main__':
+    # run
     app.run(debug=True)
