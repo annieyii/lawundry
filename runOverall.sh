@@ -11,3 +11,5 @@ mv uploads/$file2 code/
 pip3 install -r requirement.txt
 python3 code/hsv_similarity.py $file1 $file2 > HSVresult.txt
 python3 code/ssim.py $file1 $file2 > SSIMresult.txt
+python3 code/yolo.py code/$file1 > YOLOresult1.txt 
+python3 code/yolo.py code/$file2 > YOLOresult2.txt
