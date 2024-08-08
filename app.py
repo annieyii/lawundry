@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, send_from_directory, render_template
 import os
 from werkzeug.utils import secure_filename
 import subprocess
+import logging
 
 app = Flask(__name__)
 
@@ -10,8 +11,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 FILENAMES = ["", ""] # filename 永遠只有2個
 
-# 用來標記是否已經執行過 before_request
-before_request_executed = False
+# Configure logging
+logging.basicConfig(filename='app.log', level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(message)s')
 
 @app.route('/')
 def home():
@@ -94,6 +96,35 @@ def run_script():
     
     except subprocess.CalledProcessError as e:
         return jsonify({"success": False, "error": e.stderr}), 500
+    
+# 讀 yolo特徵然後回傳給前端
+@app.route('/get_features', methods=['POST'])
+def get_features():
+    print("run get features")
+    features1 = []
+    features2 = []
+
+    filenames = ['YOLOresult1.txt', 'YOLOresult2.txt']
+    for index, filename in enumerate(filenames):
+        # 如果文件不存在就404
+        if not os.path.isfile(filename):
+            return jsonify({'error': f'File {filename} not found'}), 404
+
+        try:
+            with open(filename, 'r') as file:
+                lines = file.readlines()
+                print(f"Lines from {filename}: {lines}")
+                num_features = int(lines[0].strip())
+                features = [lines[i].strip() for i in range(1, num_features + 1)]
+                if index == 0:
+                    features1 = features
+                else:
+                    features2 = features
+        except Exception as e:
+            return jsonify({'error': f'Error reading file {filename}: {str(e)}'}), 500
+    print("Features1:", features1)
+    print("Features2:", features2)
+    return jsonify({'features1': features1, 'features2': features2})
 
 if __name__ == '__main__':
     # run

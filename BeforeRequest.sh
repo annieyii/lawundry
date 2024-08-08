@@ -20,4 +20,4 @@ rm -r filenames.txt
 rm -r imagefileName.txt
 
 # 清空partpic
-rm -rf partpic/*
+rm -rf static/partpic/*
