@@ -3035,3 +3035,62 @@
 2024-08-09 23:08:11,480 INFO 127.0.0.1 - - [09/Aug/2024 23:08:11] "[33mGET /static/images/pic2.png HTTP/1.1[0m" 404 -
 2024-08-09 23:10:00,295 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/static/css/style.css", inode=11692965, flags=11400, id=224351192): is_file, is_inode_meta_mod, is_modified
 2024-08-09 23:10:00,297 DEBUG queue_event FileModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/css/style.css', dest_path='', event_type='modified', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:19,708 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-09 23:11:19,708 INFO [33mPress CTRL+C to quit[0m
+2024-08-09 23:11:19,716 INFO  * Restarting with watchdog (fsevents)
+2024-08-09 23:11:19,855 WARNING  * Debugger is active!
+2024-08-09 23:11:19,862 INFO  * Debugger PIN: 115-613-280
+2024-08-09 23:11:24,901 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/HSVresult.txt", inode=14010410, flags=10200, id=224356201): is_file, is_removed
+2024-08-09 23:11:24,905 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/HSVresult.txt', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,906 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,925 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/SSIMresult.txt", inode=14010413, flags=10200, id=224356204): is_file, is_removed
+2024-08-09 23:11:24,925 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/YOLOresult1.txt", inode=14010415, flags=10200, id=224356207): is_file, is_removed
+2024-08-09 23:11:24,925 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/YOLOresult2.txt", inode=14010430, flags=10200, id=224356210): is_file, is_removed
+2024-08-09 23:11:24,925 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/SSIMresult.txt', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,925 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,925 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/YOLOresult1.txt', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,925 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,926 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/YOLOresult2.txt', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,926 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,937 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/code/dir_6pr7do/egimg_112020612_1_051002.jpg", inode=14010399, flags=10200, id=224356225): is_file, is_removed
+2024-08-09 23:11:24,937 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/code/dir_6pr7do/1.jpg", inode=14010407, flags=10200, id=224356228): is_file, is_removed
+2024-08-09 23:11:24,937 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/code/dir_6pr7do", inode=14010408, flags=20200, id=224356231): is_directory, is_removed
+2024-08-09 23:11:24,937 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/filenames.txt", inode=14010400, flags=10200, id=224356234): is_file, is_removed
+2024-08-09 23:11:24,937 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/imagefileName.txt", inode=14010409, flags=10200, id=224356237): is_file, is_removed
+2024-08-09 23:11:24,937 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/code/dir_6pr7do/egimg_112020612_1_051002.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,937 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/code/dir_6pr7do', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,938 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/code/dir_6pr7do/1.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,938 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/code/dir_6pr7do', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,938 DEBUG queue_event DirDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/code/dir_6pr7do', dest_path='', event_type='deleted', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,938 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/code', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,938 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/filenames.txt', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,938 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,938 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/imagefileName.txt', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,939 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,949 INFO 127.0.0.1 - - [09/Aug/2024 23:11:24] "GET /index HTTP/1.1" 200 -
+2024-08-09 23:11:24,950 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/static/partpic/detection_0_cake.jpg", inode=14010424, flags=10200, id=224356240): is_file, is_removed
+2024-08-09 23:11:24,950 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/static/partpic/detection_0_person.jpg", inode=14010432, flags=10200, id=224356243): is_file, is_removed
+2024-08-09 23:11:24,950 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/static/partpic/detection_1_cake.jpg", inode=14010426, flags=10200, id=224356246): is_file, is_removed
+2024-08-09 23:11:24,951 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/static/partpic/detection_2_handbag.jpg", inode=14010428, flags=10200, id=224356249): is_file, is_removed
+2024-08-09 23:11:24,951 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/static/partpic/sharp_0_cake.jpg", inode=14010425, flags=10200, id=224356252): is_file, is_removed
+2024-08-09 23:11:24,951 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/static/partpic/sharp_0_person.jpg", inode=14010433, flags=10200, id=224356255): is_file, is_removed
+2024-08-09 23:11:24,951 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/static/partpic/sharp_1_cake.jpg", inode=14010427, flags=10200, id=224356258): is_file, is_removed
+2024-08-09 23:11:24,951 DEBUG NativeEvent(path="/Users/annan/CODE/法郎/lawundry/static/partpic/sharp_2_handbag.jpg", inode=14010429, flags=10200, id=224356261): is_file, is_removed
+2024-08-09 23:11:24,952 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic/detection_0_cake.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,952 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,952 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic/detection_0_person.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,952 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,953 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic/detection_1_cake.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,953 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,953 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic/detection_2_handbag.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,953 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,953 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic/sharp_0_cake.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,953 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,953 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic/sharp_0_person.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,953 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,954 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic/sharp_1_cake.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,954 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:24,954 DEBUG queue_event FileDeletedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic/sharp_2_handbag.jpg', dest_path='', event_type='deleted', is_directory=False, is_synthetic=False)
+2024-08-09 23:11:24,954 DEBUG queue_event DirModifiedEvent(src_path='/Users/annan/CODE/法郎/lawundry/static/partpic', dest_path='', event_type='modified', is_directory=True, is_synthetic=False)
+2024-08-09 23:11:25,007 INFO 127.0.0.1 - - [09/Aug/2024 23:11:25] "GET /static/css/style.css HTTP/1.1" 200 -
