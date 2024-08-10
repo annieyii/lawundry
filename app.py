@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, send_from_directory, render_template
 import os
 from werkzeug.utils import secure_filename
 import subprocess
+import logging
 
 app = Flask(__name__)
 
@@ -10,8 +11,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 FILENAMES = ["", ""] # filename 永遠只有2個
 
-# 用來標記是否已經執行過 before_request
-before_request_executed = False
+# Configure logging
+logging.basicConfig(filename='app.log', level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(message)s')
 
 @app.route('/')
 def home():
@@ -94,6 +96,73 @@ def run_script():
     
     except subprocess.CalledProcessError as e:
         return jsonify({"success": False, "error": e.stderr}), 500
+    
+# 讀 yolo特徵然後回傳給前端
+@app.route('/get_features', methods=['POST'])
+def get_features():
+    print("run get features")
+    features1 = []
+    features2 = []
+
+    filenames = ['YOLOresult1.txt', 'YOLOresult2.txt']
+    for index, filename in enumerate(filenames):
+        # 如果文件不存在就404
+        if not os.path.isfile(filename):
+            return jsonify({'error': f'File {filename} not found'}), 404
+
+        try:
+            with open(filename, 'r') as file:
+                lines = file.readlines()
+                print(f"Lines from {filename}: {lines}")
+                num_features = int(lines[0].strip())
+                features = [lines[i].strip() for i in range(1, num_features + 1)]
+                if index == 0:
+                    features1 = features
+                else:
+                    features2 = features
+        except Exception as e:
+            return jsonify({'error': f'Error reading file {filename}: {str(e)}'}), 500
+    print("Features1:", features1)
+    print("Features2:", features2)
+    return jsonify({'features1': features1, 'features2': features2})
+
+# 存被勾選的檔案是啥
+@app.route('/save_image_src', methods=['POST'])
+def save_image_src():
+    data = request.json
+    src1 = data.get('src1', '')
+    src2 = data.get('src2', '')
+
+    # 只保留 "/partpic/sharp_1_cake.jpg" 部分
+    src1_path = src1.split('static')[-1]
+    src2_path = src2.split('static')[-1]
+
+    try:
+        with open('partial-imagesChecked.txt', 'w') as file:
+            file.write(f"{src1_path}\n")
+            file.write(f"{src2_path}\n")
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+# run runpartial.sh
+@app.route('/run_partial_script', methods=['POST'])
+def run_partial_script():
+    try:
+        # 使用 subprocess 运行 runPartial.sh
+        result = subprocess.run(['./runPartial.sh'], capture_output=True, text=True, check=True)
+        print("runPartial.sh executed successfully")
+        
+        with open('PartialHSVresult.txt', 'r') as hsv_file:
+            hsv = hsv_file.read().strip()
+            print("HSV result:", hsv)
+        with open('PartialSSIMresult.txt', 'r') as ssim_file:
+            ssim = ssim_file.read().strip()
+            print("SSIM result:", ssim)
+        
+        return jsonify({"success": True, "ssim": ssim, "hsv": hsv}), 200
+    except subprocess.CalledProcessError as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 if __name__ == '__main__':
     # run

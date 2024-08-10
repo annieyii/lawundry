@@ -43,9 +43,10 @@ def main(input_path):
     # 用來計算物件類別數量
     object_counts = {}
     numOfAll = 0
+    detected_objects = []
 
     # 創建存儲檢測範圍截圖的目錄
-    output_dir = "partpic"
+    output_dir = "static/partpic"
     os.makedirs(output_dir, exist_ok=True)
 
     # 處理每個檢測到的物件
@@ -56,6 +57,7 @@ def main(input_path):
         # 更新物件數量
         class_name = model.names[int(cls)]
         numOfAll += 1
+        detected_objects.append(class_name)
         if class_name in object_counts:
             object_counts[class_name] += 1
         else:
@@ -79,8 +81,8 @@ def main(input_path):
 
     print(numOfAll)
     # Print only object names
-    for object_name in object_counts:
-        print(object_name)
+    for obj in detected_objects:
+        print(obj)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='YOLOv9 Object Detection')

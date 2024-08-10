@@ -20,4 +20,8 @@ rm -r filenames.txt
 rm -r imagefileName.txt
 
 # 清空partpic
-rm -rf partpic/*
+rm -rf static/partpic/*
+
+rm -r partial-imagesChecked.txt
+rm -r PartialHSVresult.txt
+rm -r PartialSSIMresult.txt
