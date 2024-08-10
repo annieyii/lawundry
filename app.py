@@ -126,6 +126,44 @@ def get_features():
     print("Features2:", features2)
     return jsonify({'features1': features1, 'features2': features2})
 
+# 存被勾選的檔案是啥
+@app.route('/save_image_src', methods=['POST'])
+def save_image_src():
+    data = request.json
+    src1 = data.get('src1', '')
+    src2 = data.get('src2', '')
+
+    # 只保留 "/partpic/sharp_1_cake.jpg" 部分
+    src1_path = src1.split('static')[-1]
+    src2_path = src2.split('static')[-1]
+
+    try:
+        with open('partial-imagesChecked.txt', 'w') as file:
+            file.write(f"{src1_path}\n")
+            file.write(f"{src2_path}\n")
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+# run runpartial.sh
+@app.route('/run_partial_script', methods=['POST'])
+def run_partial_script():
+    try:
+        # 使用 subprocess 运行 runPartial.sh
+        result = subprocess.run(['./runPartial.sh'], capture_output=True, text=True, check=True)
+        print("runPartial.sh executed successfully")
+        
+        with open('PartialHSVresult.txt', 'r') as hsv_file:
+            hsv = hsv_file.read().strip()
+            print("HSV result:", hsv)
+        with open('PartialSSIMresult.txt', 'r') as ssim_file:
+            ssim = ssim_file.read().strip()
+            print("SSIM result:", ssim)
+        
+        return jsonify({"success": True, "ssim": ssim, "hsv": hsv}), 200
+    except subprocess.CalledProcessError as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
 if __name__ == '__main__':
     # run
     app.run(debug=True)

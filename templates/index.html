@@ -58,11 +58,11 @@
                         <div class="result-items-row"> 
                             <div class="result-item">
                                 <div class="result-description">SSIM</div>                               
-                                <div class="result-value">37.27%</div>                                
+                                <div class="result-value" id="partial-ssim-result"></div>                                
                             </div>
                             <div class="result-item">
                                 <div class="result-description">HSV</div>
-                                <div class="result-value">6.52%</div>
+                                <div class="result-value" id="partial-hsv-result"></div>
                             </div>
                         </div>
                     </div>
@@ -75,5 +75,6 @@
 <!--import js file-->
 <script src="{{ url_for('static', filename='script/UploadImage.js') }}"></script>
 <script src="{{ url_for('static', filename='script/SubmitFeatures.js') }}"></script>
+
 </body>
 </html>

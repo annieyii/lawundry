@@ -36,7 +36,54 @@ function submitFeatures() {
         console.log('Image src for feature 2:', src2);
         image2.innerHTML = `<img src="${src2}" alt="Image 2" style="width: 100%; height: 100%;">`;
 
-        content.style.display = 'block';
+        //  改檔名變sharp 方便之後跑模型
+        const modifiedSrc1 = src1.replace(/detection/g, 'sharp');
+        const modifiedSrc2 = src2.replace(/detection/g, 'sharp');
+
+        // 開一個新的檔案去存說哪兩個被勾選
+        fetch('/save_image_src', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // 设置请求的内容类型为 JSON
+            },
+            body: JSON.stringify({ // 将响应解析为 JSON
+                src1: modifiedSrc1,
+                src2: modifiedSrc2
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Image src saved successfully.');
+                // run runPartial.sh
+                fetch('/run_partial_script', {
+                    method: 'POST',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('runPartial.sh executed successfully.');
+                        document.getElementById('partial-ssim-result').innerText = data.ssim;
+                        document.getElementById('partial-hsv-result').innerText = data.hsv;
+                        console.log('Partial SSIM HSV data Script executed successfully.');
+                        
+                        // 顯示結果
+                        content.style.display = 'block';
+                    } else {
+                        console.error('Failed to execute runPartial.sh:', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error executing runPartial.sh:', error);
+                });
+            } else {
+                console.error('Failed to save image src:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
     } else {
         content.style.display = 'none';
     }
