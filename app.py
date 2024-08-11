@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify, send_from_directory, render_template
 import os
 from werkzeug.utils import secure_filename
 import subprocess
-import logging
 
 app = Flask(__name__)
 
@@ -10,10 +9,6 @@ UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 FILENAMES = ["", ""] # filename 永遠只有2個
-
-# Configure logging
-logging.basicConfig(filename='app.log', level=logging.DEBUG,
-                    format='%(asctime)s %(levelname)s %(message)s')
 
 @app.route('/')
 def home():
@@ -32,7 +27,7 @@ def index():
 def send_css(path):
     return send_from_directory('css', path)
 
-# Run the script before the first request
+# run BeforeRequest.sh 他的目的是為了要清空之前的資料 不然電腦早晚會爆炸
 def run_before_request():
     try:
         result = subprocess.run(['./BeforeRequest.sh', 'arg1', 'arg2'], capture_output=True, text=True, check=True)
