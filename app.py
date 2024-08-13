@@ -22,6 +22,11 @@ def about():
 def index():
     run_before_request()
     return render_template('index.html')
+@app.route('/index/compare')
+def comapre():
+    image1_url = request.args.get('image1')
+    image2_url = request.args.get('image2')
+    return render_template('compare.html', image1=image1_url, image2=image2_url)
 
 @app.route('/css/<path:path>')
 def send_css(path):
