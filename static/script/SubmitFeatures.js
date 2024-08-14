@@ -1,15 +1,14 @@
 function submitFeatures() {
+    // 讀取checkbox
     const checkboxes1 = document.querySelectorAll('.feature-selection-row1 input[type="checkbox"]');
     const checkboxes2 = document.querySelectorAll('.feature-selection-row2 input[type="checkbox"]');
-
-    // Check if any checkbox is checked in both rows
+    // 有沒有被勾選
     const isAnyCheckboxChecked1 = Array.from(checkboxes1).some(checkbox => checkbox.checked);
     const isAnyCheckboxChecked2 = Array.from(checkboxes2).some(checkbox => checkbox.checked);
-
     console.log('Checkboxes in Row 1 checked:', isAnyCheckboxChecked1);
     console.log('Checkboxes in Row 2 checked:', isAnyCheckboxChecked2);
 
-    const content = document.getElementById('partial-selection');
+    const content = document.getElementById('partial-selection'); //如果他有被顯示（block)就代表兩張圖都有被偵測到局部特徵
     const submitButtonContainer = document.getElementById('submit-button-container');
     
     if (isAnyCheckboxChecked1 && isAnyCheckboxChecked2 && submitButtonContainer.style.display === 'block') {
