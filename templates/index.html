@@ -1,6 +1,14 @@
 <!--index.html-->
-
 {% include 'header.html' %}
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">Trademark Comparison System</div>
+            <div class="nav"> 
+              <a href="/about" class="nav-link">About Us</a>
+              <a href="/index" class="nav-link">Comprision System</a>
+            </div>
+        </div> 
 <!--圖片上傳-->
         <div class="content">
             <div class="section">
@@ -21,8 +29,10 @@
                 <button class="submitImage-button" onclick="handleSubmit()">Submit</button>
             </div>
             <div class="divider"></div>
+        </div>
 <!--尾巴-->
 {% include 'footer.html' %}
+    </div>
 <!--import js file-->
 <script src="{{ url_for('static', filename='script/UploadImage.js') }}"></script>
 

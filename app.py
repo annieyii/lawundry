@@ -3,7 +3,7 @@ import os
 from werkzeug.utils import secure_filename
 import subprocess
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates')
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -13,7 +13,7 @@ FILENAMES = ["", ""] # filename 永遠只有2個
 @app.route('/')
 def home():
     run_before_request()
-    return render_template('about.html')
+    return render_template('index.html')
 @app.route('/about')
 def about():
     run_before_request()

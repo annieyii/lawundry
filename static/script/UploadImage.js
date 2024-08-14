@@ -14,6 +14,7 @@ function uploadImage(imageBoxId, fileInputId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            // 上傳圖片＆顯示圖片
             document.getElementById(imageBoxId).innerHTML = '<img src="' + data.url + '" alt="Uploaded Image" style="width: 100%; height: 100%;">';
             if (imageBoxId === 'image-box1') {
                 image1Url = data.url;
@@ -32,7 +33,7 @@ function uploadImage(imageBoxId, fileInputId) {
 
 function handleSubmit() {
     if (image1Url && image2Url) {
-        // 传递图像 URL 并跳转到 compare.html
+        // 傳送上傳的圖片之後跳轉到compare.html
         const url = `/index/compare?image1=${encodeURIComponent(image1Url)}&image2=${encodeURIComponent(image2Url)}`;
         window.location.href = url;
     } else {
