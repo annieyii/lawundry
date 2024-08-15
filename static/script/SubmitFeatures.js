@@ -1,3 +1,4 @@
+// 點選完局部特徵之後按下submit
 function submitFeatures() {
     // 讀取checkbox
     const checkboxes1 = document.querySelectorAll('.feature-selection-row1 input[type="checkbox"]');
@@ -8,8 +9,8 @@ function submitFeatures() {
     console.log('Checkboxes in Row 1 checked:', isAnyCheckboxChecked1);
     console.log('Checkboxes in Row 2 checked:', isAnyCheckboxChecked2);
 
-    const content = document.getElementById('partial-selection'); //如果他有被顯示（block)就代表兩張圖都有被偵測到局部特徵
-    const submitButtonContainer = document.getElementById('submit-button-container');
+    const content = document.getElementById('partial-selection'); // submit 後面那段
+    const submitButtonContainer = document.getElementById('submit-button-container'); //如果他有被顯示（block)就代表兩張圖都有被偵測到局部特徵
     
     if (isAnyCheckboxChecked1 && isAnyCheckboxChecked2 && submitButtonContainer.style.display === 'block') {
         // 讀取被勾選的圖的img src
@@ -43,9 +44,9 @@ function submitFeatures() {
         fetch('/save_image_src', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json', // 设置请求的内容类型为 JSON
+                'Content-Type': 'application/json', 
             },
-            body: JSON.stringify({ // 将响应解析为 JSON
+            body: JSON.stringify({ 
                 src1: modifiedSrc1,
                 src2: modifiedSrc2
             }),
@@ -62,6 +63,7 @@ function submitFeatures() {
                 .then(data => {
                     if (data.success) {
                         console.log('runPartial.sh executed successfully.');
+                        // 填入局部ssim hsv result
                         document.getElementById('partial-ssim-result').innerText = data.ssim;
                         document.getElementById('partial-hsv-result').innerText = data.hsv;
                         console.log('Partial SSIM HSV data Script executed successfully.');
@@ -84,6 +86,7 @@ function submitFeatures() {
         });
 
     } else {
+        alert('Error: Please select a partial feature for both images before submitting.');
         content.style.display = 'none';
     }
 }

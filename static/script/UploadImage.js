@@ -1,3 +1,4 @@
+// upload 要比對的圖片
 let image1Url = '';
 let image2Url = '';
 
