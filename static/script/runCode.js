@@ -1,21 +1,23 @@
 window.onload = function() {
-    // 页面加载完成后执行操作
+    // 頁面加載完後要跑 runOverall.sh
     fetch('/run-script', {
         method: 'POST'
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            // 整體比對結果寫入html
             document.getElementById('ssim-result').innerText = data.ssim;
             document.getElementById('hsv-result').innerText = data.hsv;
             console.log('SSIM HSV data Script executed successfully.');
             
-            // 寫局部比對的特徵的選項 這裡是要科出那個html
+            // run runPartial.sh
             fetch('/get_features', {
                 method: 'POST'
             })
             .then(response => response.json())
             .then(data => {
+                // display 局部比對結果
                 const container = document.getElementById('id-result-container');
 
                 // create the first row description
@@ -35,44 +37,43 @@ window.onload = function() {
                     noFeaturesMessage1.textContent = 'This image has no features detected.';
                     container1.appendChild(noFeaturesMessage1);
                 } else {
+                    // Create the first row
+                    try {
+                        const row1 = document.createElement('div');
+                        row1.className = 'feature-selection-row1';
+                        data.features1.forEach((feature, index) => {
+                            try {
+                                const item = document.createElement('div');
+                                item.className = 'feature-selection-item';
 
-                // Create the first row
-                try {
-                    const row1 = document.createElement('div');
-                    row1.className = 'feature-selection-row1';
-                    data.features1.forEach((feature, index) => {
-                        try {
-                            const item = document.createElement('div');
-                            item.className = 'feature-selection-item';
+                                const checkbox = document.createElement('input');
+                                checkbox.type = 'checkbox';
+                                checkbox.id = `feature1_${index}`;
+                                checkbox.name = `feature1_${feature}`;
 
-                            const checkbox = document.createElement('input');
-                            checkbox.type = 'checkbox';
-                            checkbox.id = `feature1_${index}`;
-                            checkbox.name = `feature1_${feature}`;
+                                const label = document.createElement('label');
+                                label.htmlFor = `feature1_${index}`;
 
-                            const label = document.createElement('label');
-                            label.htmlFor = `feature1_${index}`;
+                                const img = document.createElement('img');
+                                img.src = `/static/partpic/detection_${index}_${feature}.jpg`;
+                                img.alt = feature;
 
-                            const img = document.createElement('img');
-                            img.src = `/static/partpic/detection_${index}_${feature}.jpg`;
-                            img.alt = feature;
+                                // Print the image source and feature for debugging
+                                console.log(`Row 1 - Image Source: ${img.src}, Feature: ${feature}`);
 
-                            // Print the image source and feature for debugging
-                            console.log(`Row 1 - Image Source: ${img.src}, Feature: ${feature}`);
-
-                            label.appendChild(img);
-                            item.appendChild(checkbox);
-                            item.appendChild(label);
-                            row1.appendChild(item);
-                        } catch (error) {
-                            console.error(`Error processing feature1 index ${index}:`, error);
-                        }
-                    });
-                    container1.appendChild(row1);
-                } catch (error) {
-                    console.error('Error initializing feature selection rows:', error);
+                                label.appendChild(img);
+                                item.appendChild(checkbox);
+                                item.appendChild(label);
+                                row1.appendChild(item);
+                            } catch (error) {
+                                console.error(`Error processing feature1 index ${index}:`, error);
+                            }
+                        });
+                        container1.appendChild(row1);
+                    } catch (error) {
+                        console.error('Error initializing feature selection rows:', error);
+                    }
                 }
-            }
                 container.appendChild(container1);
                 
                 // Create the second row description

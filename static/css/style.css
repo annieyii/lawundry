@@ -44,11 +44,36 @@ body {
   text-decoration: underline;
 }
 
-/* 文本样式 */
+/*對buttom 預設值做修改*/
+.button {
+  appearance: none;
+  text-rendering: auto;
+  color: buttontext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: transparent; /* Remove background color */
+  margin: 0em;
+  padding-block: 1px;
+  padding-inline: 6px;
+  border: none; /* Remove border */
+}
+
+/* title -> trademark comparison */
 .title {
   color: #000000;
   font-size: 30px;
   font-weight: 500;
+  background-color: transparent; /* Remove background color */
+  border: none; /* Remove border */
 }
 
 .section-title {
@@ -95,7 +120,23 @@ body {
   margin-bottom: 20px;
 }
 
+/*buttom*/
 .result-description {
+  color: #000000;
+  font-size: 25px;
+  font-weight: 800;
+  width: 400px;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 20px;
+  background-color: transparent; /* Remove background color */
+  border: none; /* Remove border */
+}
+.result-description:hover{
+  color: blue;
+}
+
+.feature-result-description{
   color: #000000;
   font-size: 25px;
   font-weight: 800;
@@ -182,7 +223,8 @@ body {
   margin: 10px;
 }
 
-.upload-button , .feature-upload-button{
+/*一開始上傳照片的按鈕 ＆ 局部比對上傳按鈕*/
+.upload-button {
   font-size: 18px;
   display: flex;
   justify-content: center;
@@ -192,41 +234,35 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   margin: 10px;
-  background-color: #5d00ff; /* 添加背景色 */
+  background-color: #A7BEC6; 
+  color: white; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; /*過度效果*/
+}
+.submitImage-button , .feature-upload-button{
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 45px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  margin: 10px;
+  background-color: #5B7493; /* 添加背景色 */
   color: white; /* 改变文字颜色 */
   cursor: pointer; /* 当鼠标移至按钮上时，改变鼠标指针 */
   transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
-.submitImage-button {
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 45px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
-  margin: 10px;
-  background-color: #4CAF50; /* 添加背景色 */
-  color: white; /* 改变文字颜色 */
-  cursor: pointer; /* 当鼠标移至按钮上时，改变鼠标指针 */
-  transition: background-color 0.3s ease; /* 添加过渡效果 */
+/*滑鼠移上去時改變背景顏色*/
+.upload-button:hover ,.feature-upload-button:hover, .submitImage-button:hover {
+  background-color: #000000; 
 }
 
 .feature-upload-button-container {
   display: flex; /* 使用 flexbox 进行布局 */
   align-items: center; /* 垂直居中按钮 */
   justify-content: center; /* 水平居中按钮 */
-}
-
-.upload-button:hover {
-  background-color: #000000; /* 当鼠标移至按钮上时，改变背景色 */
-}
-.feature-upload-button:hover {
-  background-color: #000000; /* 当鼠标移至按钮上时，改变背景色 */
-}
-.submitImage-button:hover {
-  background-color: #000000; /* 当鼠标移至按钮上时，改变背景色 */
 }
 
 .divider {

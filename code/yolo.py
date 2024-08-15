@@ -1,3 +1,5 @@
+# yolo.py 確定模型後記得要換
+
 import argparse
 import cv2
 import os

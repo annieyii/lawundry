@@ -16,7 +16,7 @@ mv uploads/$file1 code/$random_dir/
 mv uploads/$file2 code/$random_dir/
 
 # Call the Python script to compare the images
-python3 code/hsv_similarity.py $random_dir/$file1 $random_dir/$file2 > HSVresult.txt
+python3 code/hsv.py code/$random_dir/$file1 code/$random_dir/$file2 > HSVresult.txt
 python3 code/ssim.py $random_dir/$file1 $random_dir/$file2 > SSIMresult.txt
 python3 code/yolo.py code/$random_dir/$file1 > YOLOresult1.txt 
 python3 code/yolo.py code/$random_dir/$file2 > YOLOresult2.txt
