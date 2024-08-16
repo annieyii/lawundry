@@ -1,9 +1,10 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template
+from flask import Flask, request, jsonify, send_from_directory, render_template, Markup
 import os
 from werkzeug.utils import secure_filename
 import subprocess
+import markdown
 
-app = Flask(__name__,template_folder='templates')
+app = Flask(__name__, template_folder='templates')
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -27,6 +28,9 @@ def comapre():
     image1_url = request.args.get('image1')
     image2_url = request.args.get('image2')
     return render_template('compare.html', image1=image1_url, image2=image2_url)
+@app.route('/index/compare/introSSIM')
+def introSSIM():
+    return render_template('introSSIm.html')
 
 @app.route('/css/<path:path>')
 def send_css(path):

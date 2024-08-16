@@ -31,7 +31,7 @@ body {
   gap: 40px;
 }
 
-/* 分页链接样式 */
+/* 分頁銜接样式 */
 .nav a {
   color: #000000;
   font-size: 25px;
@@ -39,7 +39,6 @@ body {
   font-weight: 450;
 }
 
-/* 分页链接的悬停样式 */
 .nav a:hover {
   text-decoration: underline;
 }
@@ -187,7 +186,7 @@ body {
   text-align: center;
 }
 
-/* 内容样式 */
+/* 内容 */
 .content {
   width: 100%;
   padding: 20px;
