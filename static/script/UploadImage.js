@@ -22,6 +22,7 @@ function uploadImage(imageBoxId, fileInputId) {
             } else if (imageBoxId === 'image-box2') {
                 image2Url = data.url;
             }
+
         } else {
             alert('Image upload failed.');
         }
@@ -34,9 +35,32 @@ function uploadImage(imageBoxId, fileInputId) {
 
 function handleSubmit() {
     if (image1Url && image2Url) {
-        // 傳送上傳的圖片之後跳轉到compare.html
-        const url = `/index/compare?image1=${encodeURIComponent(image1Url)}&image2=${encodeURIComponent(image2Url)}`;
-        window.location.href = url;
+        // 跑 runOverall.sh
+        fetch('/run-script', {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 整體比對結果寫入html
+                console.log('SSIM HSV data Script executed successfully.');
+
+                // Remove 'uploads/' from the image URLs
+                const image1Path = image1Url.replace('uploads/', '');
+                const image2Path = image2Url.replace('uploads/', '');
+                
+                // 傳送上傳的圖片跟ssim hsv結果之後跳轉到compare.html
+                const randomDir = data.random_dir;
+                const url = `/index/compare?image1=${encodeURIComponent(`/static/${randomDir}${image1Path}`)}&image2=${encodeURIComponent(`/static/${randomDir}${image2Path}`)}&ssim=${encodeURIComponent(data.ssim)}&hsv=${encodeURIComponent(data.hsv)}`;                
+                window.location.href = url;
+            } else {
+                alert('Script execution failed.');
+            }
+        })
+        .catch(error => {
+            console.error('Error executing script:', error);
+            alert('Script execution failed.');
+        });
     } else {
         alert('Please upload both images before submitting.');
     }

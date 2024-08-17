@@ -19,32 +19,30 @@
                     </div>
                 </div>
             </div>
-            <!--等跑完再做顯示-->
-            <div id="post-upload-content" style="display: none;">
-                <div class="divider"></div> 
-                <!--overall cmp-->                
-                <div class="section">
-                    <div class="section-title">Overall Comparison</div>
-                    <div class="section-subtitle">Compare entire images through SSIM and HSV</div>
-                    
-                    <div class="result-items-row"> 
-                        <div class="result-item">
-                            <button class="result-description" onclick="location.href='/index/compare/introSSIM';">SSIM</button>                               
-                            <div class="result-value" id="ssim-result"></div>
-                        </div>
-                        <div class="result-item">
-                            <button class="result-description" onclick="location.href='/index';">HSV</button>
-                            <div class="result-value" id="hsv-result"></div>
-                        </div>
-                        <div class="result-item">
-                            <button class="result-description" onclick="location.href='/index';">CNN</button>
-                            <!--
-                            <div class="result-value" id="hsv-result"></div>
-                            -->
-                        </div>
+            <div class="divider"></div> 
+            <!--overall cmp-->                
+            <div class="section">
+                <div class="section-title">Overall Comparison</div>
+                <div class="section-subtitle">Compare entire images through SSIM and HSV</div>
+                
+                <div class="result-items-row"> 
+                    <div class="result-item">
+                        <button class="result-description" onclick="location.href='/index/compare/introSSIM';">SSIM</button>                               
+                        <div class="result-value">{{ request.args.get('ssim') }}</div>
                     </div>
-
+                    <div class="result-item">
+                        <button class="result-description" onclick="location.href='/index/compare/introHSV';">HSV</button>
+                        <div class="result-value">{{ request.args.get('hsv') }}</div>
+                    </div>
+                    <div class="result-item">
+                        <button class="result-description" onclick="location.href='/index/compare/introCNN';">CNN</button>
+                        <!--
+                        <div class="result-value"></div>
+                        -->
+                    </div>
                 </div>
+            </div>
+            <div id="post-featrue-content" style="display: none;">
                 <div class="divider"></div>
                 <!--partial cmp-->
                 <div class="section">
@@ -64,18 +62,22 @@
                         </div>
                         <div class="result-items-row"> 
                             <div class="result-item">
-                                <div class="feature-result-description">SSIM</div>                               
+                                <div class="feature-result-description">SSIM</div>
                                 <div class="result-value" id="partial-ssim-result"></div>                                
                             </div>
                             <div class="result-item">
                                 <div class="feature-result-description">HSV</div>
                                 <div class="result-value" id="partial-hsv-result"></div>
                             </div>
+                            <div class="result-item">
+                                <div class="feature-result-description">CNN</div>
+                                <div class="result-value" id="partial-hsv-result"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="divider"></div>            
+        <div class="divider"></div>            
         <!--尾巴-->
         {% include 'footer.html' %}
         </div>

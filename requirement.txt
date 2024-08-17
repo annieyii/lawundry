@@ -39,6 +39,7 @@ kiwisolver==1.4.5
 lazy_loader==0.4
 Lektor==3.3.11
 llvmlite==0.43.0
+Markdown==3.6
 MarkupSafe==2.1.5
 matplotlib==3.9.1
 mistune==0.8.4
