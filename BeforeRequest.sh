@@ -11,8 +11,8 @@ file2=$(sed -n '2p' filenames.txt)
 imagefile=$(sed -n '1p' imagefileName.txt)
 
 # 确保 imagefile 变量非空并且是一个目录
-if [ -n "$imagefile" ] && [ -d "code/$imagefile" ]; then
-  rm -r "code/$imagefile"
+if [ -n "$imagefile" ] && [ -d "static/$imagefile" ]; then
+  rm -r "static/$imagefile"
 fi
 
 rm -r filenames.txt

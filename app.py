@@ -1,10 +1,9 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template, Markup
+from flask import Flask, request, jsonify, send_from_directory, render_template
 import os
 from werkzeug.utils import secure_filename
 import subprocess
-import markdown
 
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='templates', static_folder='static')
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -30,7 +29,13 @@ def comapre():
     return render_template('compare.html', image1=image1_url, image2=image2_url)
 @app.route('/index/compare/introSSIM')
 def introSSIM():
-    return render_template('introSSIm.html')
+    return render_template('introSSIM.html')
+@app.route('/index/compare/introHSV')
+def introHSV():
+    return render_template('introHSV.html')
+@app.route('/index/compare/introCNN')
+def introCNN():
+    return render_template('introCNN.html')
 
 @app.route('/css/<path:path>')
 def send_css(path):
@@ -83,12 +88,14 @@ def upload_file():
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-# run .sh file
+# run runOverall.sh file
 @app.route('/run-script', methods=['POST'])
 def run_script():
     try:
         result = subprocess.run(['./runOverall.sh', 'arg1', 'arg2'], capture_output=True, text=True, check=True)
 
+        with open('imagefileName.txt', 'r') as file:
+            random_dir = file.read().strip()
         with open('HSVresult.txt', 'r') as hsv_file:
             hsv = hsv_file.read().strip()
             print("HSV result:", hsv)
@@ -96,7 +103,7 @@ def run_script():
             ssim = ssim_file.read().strip()
             print("SSIM result:", ssim)
         
-        return jsonify({"success": True, "ssim": ssim, "hsv": hsv}), 200
+        return jsonify(success=True, random_dir=random_dir, ssim=ssim, hsv=hsv), 200
     
     except subprocess.CalledProcessError as e:
         return jsonify({"success": False, "error": e.stderr}), 500
