@@ -10,7 +10,7 @@ file1=$(sed -n '1p' filenames.txt)
 file2=$(sed -n '2p' filenames.txt)
 imagefile=$(sed -n '1p' imagefileName.txt)
 
-# 确保 imagefile 变量非空并且是一个目录
+# 确保 imagefile 不是空的不然會刪到static 資料夾
 if [ -n "$imagefile" ] && [ -d "static/$imagefile" ]; then
   rm -r "static/$imagefile"
 fi
@@ -18,7 +18,7 @@ fi
 rm -r filenames.txt
 rm -r imagefileName.txt
 
-# 清空partpic
+# 清空 partpic
 rm -rf static/partpic/*
 
 rm -r partial-imagesChecked.txt
