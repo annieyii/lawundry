@@ -76,6 +76,8 @@ def compare_entire_images(image_path1, image_path2):
     similarity_percentage = final_similarity * 100
     return similarity_percentage
 
+
+
 def main(image_path1, image_path2):
 
     similarity_scores, average_similarity = compare_image_regions(image_path1, image_path2)

@@ -1,4 +1,4 @@
-# yolo.py 確定模型後記得要換
+# yolov10
 
 import argparse
 import cv2
@@ -12,7 +12,7 @@ def main(input_path):
     logging.getLogger('ultralytics').setLevel(logging.ERROR)
 
     # 加載 YOLOv9 訓練模型 # pip install ultralytics
-    model = YOLO('yolov9s.pt')
+    model = YOLO('yolov10x.pt')
 
     # 加載圖片
     img_cv2 = cv2.imread(input_path)

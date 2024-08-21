@@ -2,20 +2,21 @@ from flask import Flask, request, jsonify, send_from_directory, render_template
 import os
 from werkzeug.utils import secure_filename
 import subprocess
-import logging
+# import logging
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
-# Configure logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('app.log'),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
+
+# # Configure logging
+# logging.basicConfig(
+#     level=logging.DEBUG,
+#     format='%(asctime)s - %(levelname)s - %(message)s',
+#     handlers=[
+#         logging.FileHandler('app.log'),
+#         logging.StreamHandler()
+#     ]
+# )
+# logger = logging.getLogger(__name__)
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
