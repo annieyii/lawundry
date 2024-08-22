@@ -43,7 +43,7 @@ window.onload = function() {
                         label.htmlFor = `feature1_${index}`;
 
                         const img = document.createElement('img');
-                        img.src = `/static/partpic/detection_${index}_${feature}.jpg`;
+                        img.src = `/static/partpic/detection_img1_${index}_${feature}.jpg`;
                         img.alt = feature;
 
                         // Print the image source and feature for debugging
@@ -99,7 +99,7 @@ window.onload = function() {
                     label.htmlFor = `feature2_${index}`;
 
                     const img = document.createElement('img');
-                    img.src = `/static/partpic/detection_${index}_${feature}.jpg`;
+                    img.src = `/static/partpic/detection_img2_${index}_${feature}.jpg`;
                     img.alt = feature;
 
                     // Print the image source and feature for debugging
@@ -124,16 +124,17 @@ window.onload = function() {
         if (data.features1.length > 0 && data.features2.length > 0) {
             document.getElementById('submit-button-container').style.display = 'block';
         }
-    })
+        // 因為局部特徵只能單選 這裡是做觸發器 讓他偵測
+        handleRowCheckboxes('.feature-selection-row1');
+        handleRowCheckboxes('.feature-selection-row2');
 
-    // 因為局部特徵只能單選 這裡是做觸發器 讓他偵測
-    handleRowCheckboxes('.feature-selection-row1');
-    handleRowCheckboxes('.feature-selection-row2');
+    });
 }
 
 
 /*當另一個checkbox 被點選時，已點選的那個checkbox 會自己取消點選*/
 function handleRowCheckboxes(rowSelector) {
+    console.log(`${rowSelector} is called`);
     const rows = document.querySelectorAll(rowSelector);
     rows.forEach(row => {
         console.log(row.innerHTML);

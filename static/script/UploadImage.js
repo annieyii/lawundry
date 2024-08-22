@@ -55,7 +55,7 @@ function handleSubmit() {
                 
                 // 傳送上傳的圖片跟ssim hsv結果之後跳轉到compare.html
                 const randomDir = data.random_dir;
-                const url = `/index/compare?image1=${encodeURIComponent(`/static/${randomDir}${image1Path}`)}&image2=${encodeURIComponent(`/static/${randomDir}${image2Path}`)}&ssim=${encodeURIComponent(data.ssim)}&hsv=${encodeURIComponent(data.hsv)}`;                
+                const url = `/index/compare?image1=${encodeURIComponent(`/static/${randomDir}${image1Path}`)}&image2=${encodeURIComponent(`/static/${randomDir}${image2Path}`)}&ssim=${encodeURIComponent(data.ssim)}&hsv=${encodeURIComponent(data.hsv)}&cnn=${encodeURIComponent(data.cnn)}`;                
                 window.location.href = url;
             } else {
                 alert('Script execution failed.');

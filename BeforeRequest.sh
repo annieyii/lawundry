@@ -4,6 +4,7 @@ rm -r HSVresult.txt
 rm -r SSIMresult.txt
 rm -r YOLOresult1.txt
 rm -r YOLOresult2.txt
+rm -r CNNresult.txt
 
 # Read filenames from filenames.txt
 file1=$(sed -n '1p' filenames.txt)
@@ -24,3 +25,4 @@ rm -rf static/partpic/*
 rm -r partial-imagesChecked.txt
 rm -r PartialHSVresult.txt
 rm -r PartialSSIMresult.txt
+rm -r PartialCNNresult.txt

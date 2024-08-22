@@ -24,21 +24,26 @@
             <div class="section">
                 <div class="section-title">Overall Comparison</div>
                 <div class="section-subtitle">Compare entire images through SSIM and HSV</div>
-                
-                <div class="result-items-row"> 
-                    <div class="result-item">
-                        <button class="result-description" onclick="location.href='/index/compare/introSSIM';">SSIM</button>                               
-                        <div class="result-value">{{ request.args.get('ssim') }}</div>
+                <div class="result">
+                    <div class="result-items-row"> 
+                        <div class="result-item">
+                            <button class="result-description" onclick="location.href='/index/compare/introSSIM';">SSIM</button>                               
+                            <div class="result-value">{{ request.args.get('ssim') }}</div>
+                        </div>
+                        <div class="result-item">
+                            <button class="result-description" onclick="location.href='/index/compare/introHSV';">HSV</button>
+                            <div class="result-value">{{ request.args.get('hsv') }}</div>
+                        </div>
+                        <div class="result-item">
+                            <button class="result-description" onclick="location.href='/index/compare/introCNN';">CNN</button>
+                            <div class="result-value">{{ request.args.get('cnn') }}</div>
+                        </div>
                     </div>
-                    <div class="result-item">
-                        <button class="result-description" onclick="location.href='/index/compare/introHSV';">HSV</button>
-                        <div class="result-value">{{ request.args.get('hsv') }}</div>
-                    </div>
-                    <div class="result-item">
-                        <button class="result-description" onclick="location.href='/index/compare/introCNN';">CNN</button>
-                        
-                        <div class="result-value">57.74%</div>
-                        
+                    <div class="result-items-row">
+                        <div class="result-item">
+                            <button class="result-description" onclick="location.href='/index/compare/introCNN';">AI prediction</button>
+                            <div class="result-value"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,18 +65,26 @@
                             <div class="image-box" id="image-feature1">image 1</div>
                             <div class="image-box" id="image-feature2">image 2</div>
                         </div>
-                        <div class="result-items-row"> 
-                            <div class="result-item">
-                                <div class="feature-result-description">SSIM</div>
-                                <div class="result-value" id="partial-ssim-result"></div>                                
+                        <div class="result">
+                            <div class="result-items-row"> 
+                                <div class="result-item">
+                                    <div class="feature-result-description">SSIM</div>
+                                    <div class="result-value" id="partial-ssim-result"></div>                                
+                                </div>
+                                <div class="result-item">
+                                    <div class="feature-result-description">HSV</div>
+                                    <div class="result-value" id="partial-hsv-result"></div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="feature-result-description">CNN</div>
+                                    <div class="result-value">41.61%</div>
+                                </div>
                             </div>
-                            <div class="result-item">
-                                <div class="feature-result-description">HSV</div>
-                                <div class="result-value" id="partial-hsv-result"></div>
-                            </div>
-                            <div class="result-item">
-                                <div class="feature-result-description">CNN</div>
-                                <div class="result-value">41.61%</div>
+                            <div class="result-items-row">
+                                <div class="result-item">
+                                    <div class="feature-result-description">AI prediction</div>
+                                    <div class="result-value"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

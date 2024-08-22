@@ -220,6 +220,13 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   margin: 10px;
+  overflow: hidden; /* 確保圖片不會超出框框 */
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /*一開始上傳照片的按鈕 ＆ 局部比對上傳按鈕*/
@@ -302,7 +309,7 @@ body {
 }
 
 .result-item {
-  width: calc(33.33% - 20px); /* 设置每个项目的宽度并减去间隙 */
+  width: 100%; /* 设置每个项目的宽度并减去间隙 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -317,6 +324,7 @@ body {
   gap: 20px; /* 控制容器之间的距离 */
   width: 100%; /* 占满容器宽度 */
   margin: 0 auto; /* 自动设置左右外边距 */
+  margin-bottom: 40px;
 }
 
 .result-container {
@@ -343,12 +351,13 @@ body {
   align-items: center;
   justify-content: center;
   border: 1px solid #000; /* 可選，設置邊框 */
+  overflow: hidden;
 }
 
 .feature-selection-item img {
   width: 100%; /* 讓圖片寬度填滿框框 */
   height: 100%; /* 讓圖片高度填滿框框 */
-  object-fit: cover; /* 確保圖片不會變形 */
+  object-fit: contain; /* 確保圖片不會變形 */
 }
 
 .feature-selection-item input[type="checkbox"] {

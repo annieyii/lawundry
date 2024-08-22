@@ -18,5 +18,5 @@ mv uploads/$file2 static/$random_dir/
 # Call the Python script to compare the images
 python3 code/hsv.py static/$random_dir/$file1 static/$random_dir/$file2 > HSVresult.txt
 python3 code/ssim.py ../static/$random_dir/$file1 ../static/$random_dir/$file2 > SSIMresult.txt
-python3 code/yolo.py static/$random_dir/$file1 > YOLOresult1.txt 
-python3 code/yolo.py static/$random_dir/$file2 > YOLOresult2.txt
+python3 code/cnn.py static/$random_dir/$file1 static/$random_dir/$file2 > CNNresult.txt
+python3 code/yolo.py static/$random_dir/$file1 static/$random_dir/$file2
