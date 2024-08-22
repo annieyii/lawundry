@@ -5,6 +5,7 @@ window.onload = function() {
     })
     .then(response => response.json())
     .then(data => {
+        const dir_name = data.dir_name;
         // display 局部比對結果
         const container = document.getElementById('id-result-container');
 
@@ -43,7 +44,7 @@ window.onload = function() {
                         label.htmlFor = `feature1_${index}`;
 
                         const img = document.createElement('img');
-                        img.src = `/static/partpic/detection_img1_${index}_${feature}.jpg`;
+                        img.src = `/static/${dir_name}/partpic/detection_img1_${index}_${feature}.jpg`;
                         img.alt = feature;
 
                         // Print the image source and feature for debugging
@@ -99,7 +100,7 @@ window.onload = function() {
                     label.htmlFor = `feature2_${index}`;
 
                     const img = document.createElement('img');
-                    img.src = `/static/partpic/detection_img2_${index}_${feature}.jpg`;
+                    img.src = `/static/${dir_name}/partpic/detection_img2_${index}_${feature}.jpg`;
                     img.alt = feature;
 
                     // Print the image source and feature for debugging

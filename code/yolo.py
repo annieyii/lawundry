@@ -79,11 +79,11 @@ def process_image(input_path, output_txt, partpic_dir, image_index):
         for obj in detected_objects:
             file.write(f"{obj}\n")
 
-def main(input_path1, input_path2):
+def main(input_path1, input_path2, dir_path):
     # Define output paths
-    output_txt1 = "YOLOresult1.txt"
-    output_txt2 = "YOLOresult2.txt"
-    partpic_dir = "static/partpic"
+    output_txt1 = os.path.join(dir_path, "YOLOresult1.txt")
+    output_txt2 = os.path.join(dir_path, "YOLOresult2.txt")
+    partpic_dir = os.path.join(dir_path, "partpic")
 
     # Process both images
     process_image(input_path1, output_txt1, partpic_dir, image_index=1)
@@ -93,6 +93,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='YOLOv10x Object Detection')
     parser.add_argument('input_file1', type=str, help='Path to the first input image file')
     parser.add_argument('input_file2', type=str, help='Path to the second input image file')
+    parser.add_argument('dir_name', type=str, help='Directory name for saving results')
     args = parser.parse_args()
 
-    main(args.input_file1, args.input_file2)
+    # Replace spaces with underscores in directory name
+    args.dir_name = args.dir_name.replace(" ", "_")
+
+    main(args.input_file1, args.input_file2, args.dir_name)
