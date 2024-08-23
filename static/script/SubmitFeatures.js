@@ -1,6 +1,7 @@
 // 點選完局部特徵之後按下submit
 function submitFeatures() {
 
+    
     // 讀取checkbox
     const checkboxes1 = document.querySelectorAll('.feature-selection-row1 input[type="checkbox"]');
     const checkboxes2 = document.querySelectorAll('.feature-selection-row2 input[type="checkbox"]');
@@ -9,11 +10,15 @@ function submitFeatures() {
     const isAnyCheckboxChecked2 = Array.from(checkboxes2).some(checkbox => checkbox.checked);
     console.log('Checkboxes in Row 1 checked:', isAnyCheckboxChecked1);
     console.log('Checkboxes in Row 2 checked:', isAnyCheckboxChecked2);
-
+    
     const content = document.getElementById('partial-selection'); // submit 後面那段
     const submitButtonContainer = document.getElementById('submit-button-container'); //如果他有被顯示（block)就代表兩張圖都有被偵測到局部特徵
     
     if (isAnyCheckboxChecked1 && isAnyCheckboxChecked2 && submitButtonContainer.style.display === 'block') {
+        
+        document.getElementById('feature-submit-buttom').style.display = 'none';
+        document.getElementById('running-message').style.display = 'block';
+        
         // 讀取被勾選的圖的img src
         const getImageSrc = (checkboxes) => {
             const checkedCheckboxes = Array.from(checkboxes).find(checkbox => checkbox.checked);
@@ -72,6 +77,9 @@ function submitFeatures() {
                         
                         // 顯示結果
                         content.style.display = 'block';
+
+                        document.getElementById('feature-submit-buttom').style.display = 'block';
+                        document.getElementById('running-message').style.display = 'none';
                     } else {
                         console.error('Failed to execute runPartial.sh:', data.error);
                     }

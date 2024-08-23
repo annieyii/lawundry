@@ -199,6 +199,7 @@ def run_partial_script():
         return jsonify({"success": True, "ssim": ssim, "hsv": hsv, "cnn": cnn}), 200
     except subprocess.CalledProcessError as e:
         return jsonify({"success": False, "error": str(e)}), 500
+# 清掉資料夾
 def cleanup():
     global dir_name
     if dir_name and os.path.isdir(f'static/{dir_name}'):
