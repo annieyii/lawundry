@@ -95,7 +95,7 @@ pkg==0.2
 platformdirs==4.2.2
 pooch==1.8.2
 prompt_toolkit==3.0.47
-protobuf==5.27.3
+protobuf
 psutil==6.0.0
 ptyprocess==0.7.0
 pure_eval==0.2.3

@@ -1,5 +1,6 @@
 // 點選完局部特徵之後按下submit
 function submitFeatures() {
+
     // 讀取checkbox
     const checkboxes1 = document.querySelectorAll('.feature-selection-row1 input[type="checkbox"]');
     const checkboxes2 = document.querySelectorAll('.feature-selection-row2 input[type="checkbox"]');
@@ -66,6 +67,7 @@ function submitFeatures() {
                         // 填入局部ssim hsv result
                         document.getElementById('partial-ssim-result').innerText = data.ssim;
                         document.getElementById('partial-hsv-result').innerText = data.hsv;
+                        document.getElementById('partial-cnn-result').innerText = data.cnn;
                         console.log('Partial SSIM HSV data Script executed successfully.');
                         
                         // 顯示結果

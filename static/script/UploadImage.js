@@ -35,9 +35,9 @@ function uploadImage(imageBoxId, fileInputId) {
 
 function handleSubmit() {
     if (image1Url && image2Url) {
-        // 隐藏提交按钮
+        // 隱藏submit按钮
         document.getElementById('submit-button').style.display = 'none';
-        // 显示 "running......" 信息
+        // 顯示 "running......" 信息
         document.getElementById('running-message').style.display = 'block';
         // 跑 runOverall.sh
         fetch('/run-script', {

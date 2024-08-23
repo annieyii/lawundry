@@ -6,6 +6,7 @@ import re
 from datetime import datetime
 import shutil
 import atexit
+import random
 # import logging
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -32,8 +33,9 @@ def sanitize_filename(filename):
     filename = secure_filename(filename)
     # 對檔名做時間處理
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+    random_number = random.randint(1000, 9999)  # 生成 4 位的隨機數
     name, ext = os.path.splitext(filename)
-    new_filename = f"{name}_{timestamp}{ext}"
+    new_filename = f"{name}_{timestamp}_{random_number}{ext}"
     return re.sub(r'\s+', '_', new_filename)
 
 @app.route('/')
@@ -192,8 +194,9 @@ def run_partial_script():
 
         hsv = read_file(os.path.join(save_path, 'PartialHSVresult.txt'))
         ssim = read_file(os.path.join(save_path, 'PartialSSIMresult.txt'))
+        cnn = read_file(os.path.join(save_path, 'PartialCNNresult.txt'))
         
-        return jsonify({"success": True, "ssim": ssim, "hsv": hsv}), 200
+        return jsonify({"success": True, "ssim": ssim, "hsv": hsv, "cnn": cnn}), 200
     except subprocess.CalledProcessError as e:
         return jsonify({"success": False, "error": str(e)}), 500
 def cleanup():
@@ -204,7 +207,7 @@ def cleanup():
     else:
         print(f"No directory found to delete for static/{dir_name}")
 
-atexit.register(cleanup) 
+atexit.register(cleanup)   
 
 if __name__ == '__main__':
     # run

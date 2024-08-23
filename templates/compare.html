@@ -57,7 +57,7 @@
                     <div class='feature-result-container' id="id-result-container" ></div>                 
                     <!--submit按鈕 在兩邊都有局部特徵時才會顯示按鈕-->
                     <div class="feature-upload-button-container" id="submit-button-container" style="display: none;">
-                        <div class="feature-upload-button" onclick="submitFeatures()">Submit</div>
+                        <div class="feature-upload-button" id="feature-submit-buttom" onclick="submitFeatures()">Submit</div>
                     </div>
                 <!--選取完要比對的特徵後-->
                     <div id="partial-selection" style="display: none;">
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="result-item">
                                     <div class="feature-result-description">CNN</div>
-                                    <div class="result-value"></div>
+                                    <div class="result-value" id="partial-cnn-result"></div>
                                 </div>
                             </div>
                             <div class="result-items-row">
