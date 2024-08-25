@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 
 <html lang="zh">
-    {% include 'layout.html' %}
-    <body>
-        <div class="container">
-            {% include 'header.html' %}
-            <div class="divider"></div>
-            {% include 'footer.html' %}
+{% include 'layoutIntro.html' %}
+<body>
+<div class="container">
+    {% include 'header.html' %}
+    <div class="section">
+        <div class="upload-container">
+            <div class="image-box">
+                <img src="{{ request.args.get('image1') }}" alt="Image 1" style="width: 100%; height: 100%;">
+            </div>
+            <div class="image-box">
+                <img src="{{ request.args.get('image2') }}" alt="Image 2" style="width: 100%; height: 100%;">
+            </div>
         </div>
-    </body>
+    </div>
+    <div class="divider"></div>
+    <!-- 內容 -->
+    <h1>CNN - Convolutional Neural Networks 卷積神經網路</h1>
+    <hr>
+    <h2><strong></strong></h2>
+    <ul>
+        <h3>Convolution Layer 卷積層</h3>
+        <p>透過 filter 提取圖片特徵，這些特徵會作為下一層的輸入。<br>
+            * filter是矩陣（權重）<br><br>
+
+            <strong>kernel 卷積核 (filter/ feature detectors)</strong>：由卷積核控制特徵接收的區域，換言之，卷積核會遍歷整張圖像，後給出特徵值。
+        </p>
+        <h3>Pooling Layer 池化層</h3>
+        <p>縮小 featrue map 尺寸 避免 overfitting，但仍可保留影像主要特徵。<br><br>
+            
+            常見的池化：max pooling -> 在每一個2x2矩陣中取最大。
+        </p>
+        <h3>Flattern Layer 平坦層</h3>
+        <p>進入到多層感知器前，先將矩陣打成一維陣列，後將陣列送至全連接層進行處理。
+        </p>
+        <h3>Fully Connected Layer 全連接層</h3>
+        <p>特徵提取，計算每一個被提取的特徵後，再由權重分配每種特徵的重要程度，爾後給出圖像屬於何種分類。
+        </p>
+    </ul>
+
+    <div class="divider"></div>
+    {% include 'footer.html' %}
+</div>
+</body>
 </html>

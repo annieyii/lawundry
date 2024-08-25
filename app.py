@@ -7,6 +7,7 @@ from datetime import datetime
 import shutil
 import atexit
 import random
+from PIL import Image
 # import logging
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -199,6 +200,41 @@ def run_partial_script():
         return jsonify({"success": True, "ssim": ssim, "hsv": hsv, "cnn": cnn}), 200
     except subprocess.CalledProcessError as e:
         return jsonify({"success": False, "error": str(e)}), 500
+
+# 回傳給 js save_path
+@app.route('/get-folder-name', methods=['GET'])
+def get_folder_name():
+    return jsonify({"folder_name": save_path})
+
+# 處理 hsv 的圖片 把他切成九格
+@app.route('/process-images', methods=['GET'])
+def process_images():
+
+    # 將路徑最開頭的/ 去除
+    image1_path = request.args.get('image1').lstrip('/')
+    image2_path = request.args.get('image2').lstrip('/')
+    
+    # 確保資料夾存在
+    output_folder = f'{save_path}/processed_images'
+    os.makedirs(output_folder, exist_ok=True)
+    
+    # 處理圖像
+    def process_image(image_path, output_folder, prefix):
+        image = Image.open(image_path)
+        width, height = image.size
+        grid_width = width // 3
+        grid_height = height // 3
+        
+        for i in range(3):
+            for j in range(3):
+                box = (j * grid_width, i * grid_height, (j + 1) * grid_width, (i + 1) * grid_height)
+                grid_image = image.crop(box)
+                grid_image.save(os.path.join(output_folder, f'{prefix}-{i+1}-{j+1}.png'))
+    
+    process_image(image1_path, output_folder, 'img1')
+    process_image(image2_path, output_folder, 'img2')
+    
+    return jsonify({"status": "success", "message": "Images processed successfully"})
 # 清掉資料夾
 def cleanup():
     global dir_name

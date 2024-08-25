@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 
 <html lang="zh">
-    {% include 'layout.html' %}
-    <body>
-        <div class="container">
-            {% include 'header.html' %}
-            <div class="section">
-                <div class="upload-container">
-                    <div class="image-box">
-                        <img src="{{ request.args.get('image1') }}" alt="Image 1" style="width: 100%; height: 100%;">
-                    </div>
-                    <div class="image-box">
-                        <img src="{{ request.args.get('image2') }}" alt="Image 2" style="width: 100%; height: 100%;">
-                    </div>
-                </div>
+{% include 'layoutIntro.html' %}
+<body>
+<div class="container">
+    {% include 'header.html' %}
+    <div class="section">
+        <div class="upload-container">
+            <div class="image-box">
+                <img src="{{ request.args.get('image1') }}" alt="Image 1" class="grid-image">
             </div>
-            <div class="divider"></div>
-            
-            <div class="divider"></div>
-            {% include 'footer.html' %}
+            <div class="image-box" >
+                <img src="{{ request.args.get('image2') }}" alt="Image 2" class="grid-image">
+            </div>
         </div>
-    </body>
+        
+    </div>
+    <div class="divider"></div>
+    <!-- 內容 -->
+    <h1>HSV 色彩分析</h1>
+    <hr>
+    <h2><strong>HSV = Hue * Saturation * Value </strong></h2>
+    <h3>我們系統將一張圖片細分36格，每一格分別計算HSV數值，再用concatenate連接Hue、Saturation、Value三項數值，最終用平均的方式算出整張圖的HSV。</h3>
+    <ul>
+        <h3>Hue 色相</h3>
+        <p>可通過色輪表示。<br>
+            0° 為紅色 / 60° 為黃色 / 120° 為綠色 / 180° 為青色 / 240° 為藍色 / 360° 為紅色
+        </p>
+
+        <h3>Saturation 飽和度</h3>
+        <p>為色彩的純度，越高越純粹，越低摻雜越多。<br>
+            範圍介於0-1之間，純紅色飽和度為1，反之灰色飽和度接近0。
+        </p>
+
+        <h3>Value 明度</h3>
+        <p> 色彩的明亮程度，越高越亮，越低越黑 <br>
+            範圍介於0-1之間。當明度為0時，呈現黑色。當明度為1時，呈現最亮狀態。
+        </p>
+    </ul>
+    
+    <div class="divider"></div>
+    {% include 'footer.html' %}
+</div>
+<script src="{{ url_for('static', filename='script/HSVgrid.js') }}"></script>
+</body>
 </html>

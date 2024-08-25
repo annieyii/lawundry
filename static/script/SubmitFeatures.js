@@ -1,7 +1,8 @@
 // 點選完局部特徵之後按下submit
 function submitFeatures() {
 
-    
+    const content = document.getElementById('partial-selection'); // submit 後面那段
+    content.style.display = 'none';
     // 讀取checkbox
     const checkboxes1 = document.querySelectorAll('.feature-selection-row1 input[type="checkbox"]');
     const checkboxes2 = document.querySelectorAll('.feature-selection-row2 input[type="checkbox"]');
@@ -11,7 +12,6 @@ function submitFeatures() {
     console.log('Checkboxes in Row 1 checked:', isAnyCheckboxChecked1);
     console.log('Checkboxes in Row 2 checked:', isAnyCheckboxChecked2);
     
-    const content = document.getElementById('partial-selection'); // submit 後面那段
     const submitButtonContainer = document.getElementById('submit-button-container'); //如果他有被顯示（block)就代表兩張圖都有被偵測到局部特徵
     
     if (isAnyCheckboxChecked1 && isAnyCheckboxChecked2 && submitButtonContainer.style.display === 'block') {

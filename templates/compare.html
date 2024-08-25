@@ -23,11 +23,11 @@
                 <div class="result">
                     <div class="result-items-row"> 
                         <div class="result-item">
-                            <button class="result-description" onclick="location.href='/index/compare/introSSIM?image1={{ request.args.get('image1') }}&image2={{ request.args.get('image2') }}';">SSIM</button>                               
+                            <button class="result-description" onclick="toIntroSSIM('{{ request.args.get('image1') }}', '{{ request.args.get('image2') }}')">SSIM</button>
                             <div class="result-value">{{ request.args.get('ssim') }}</div>
                         </div>
                         <div class="result-item">
-                            <button class="result-description" onclick="location.href='/index/compare/introHSV?image1={{ request.args.get('image1') }}&image2={{ request.args.get('image2') }}';">HSV</button>
+                            <button class="result-description" onclick="toIntroHSV('{{ request.args.get('image1') }}', '{{ request.args.get('image2') }}')">HSV</button>
                             <div class="result-value">{{ request.args.get('hsv') }}</div>
                         </div>
                         <div class="result-item">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="result-items-row">
                         <div class="result-item">
-                            <button class="result-description" onclick="location.href='/index/compare/introCNN?image1={{ request.args.get('image1') }}&image2={{ request.args.get('image2') }}';">AI prediction</button>
+                            <button class="result-description" onclick="location.href='/index/compare/introRandomForest?image1={{ request.args.get('image1') }}&image2={{ request.args.get('image2') }}';">AI prediction</button>
                             <div class="result-value"></div>
                         </div>
                     </div>
@@ -94,5 +94,6 @@
         <!--import js file-->
         <script src="{{ url_for('static', filename='script/runCode.js') }}"></script>
         <script src="{{ url_for('static', filename='script/SubmitFeatures.js') }}"></script>
+        <script src="{{ url_for('static', filename='script/toIntro.js') }}"></script>
     </body>
 </html>

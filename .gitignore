@@ -1,0 +1,5 @@
+# .gitignore
+
+yolov10x.pt
+
+.DS_Store

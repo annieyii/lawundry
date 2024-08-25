@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 
 <html lang="zh">
-    {% include 'layout.html' %}
-    <body>
-        <div class="container">
-            {% include 'header.html' %}
-            <div class="divider"></div>
-            {% include 'footer.html' %}
+{% include 'layoutIntro.html' %}
+<body>
+<div class="container">
+    {% include 'header.html' %}
+    <div class="section">
+        <div class="upload-container">
+            <div class="image-box">
+                <img src="{{ request.args.get('image1') }}" alt="Image 1" style="width: 100%; height: 100%;">
+            </div>
+            <div class="image-box">
+                <img src="{{ request.args.get('image2') }}" alt="Image 2" style="width: 100%; height: 100%;">
+            </div>
         </div>
-    </body>
+    </div>
+    <div class="divider"></div>
+    <!-- 內容 -->
+    <h1>Random Forest regressor 隨機森林回歸</h1>
+    <hr>
+    <h3>用來統整計算後的參數，最終得出相似程度百分比參考值。</h3>
+    <ul>
+        <h3>數據抽樣</h3>
+        <p>由原始的資料中隨機抽取子樣本集，每一子樣本集用來訓練一顆決策樹。</p>
+
+        <h3>特徵選擇</h3>
+        <p>每棵樹在劃分節點時，隨機使用一部分特徵劃分，避免過度相似之情形。</p>
+
+        <h3>結果融合</h3>
+        <p>在預測階段，每一棵樹會給予一個預測值，平均每一棵樹的預測值後得出之結果，即為最終結果，減少極端偏差值的影響。</p>
+    </ul>
+
+    <div class="divider"></div>
+    {% include 'footer.html' %}
+</div>
+</body>
 </html>

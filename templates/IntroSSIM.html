@@ -17,14 +17,34 @@
                 <img src="{{ request.args.get('image2') }}" alt="Image 2" style="width: 100%; height: 100%;">
             </div>
         </div>
+        <!--比對結果-->
+        <div class="result-container">
+            <div class="result-title">結果比較</div>
+            <div class="result-title">SSIM: {{ request.args.get('ssim') }}</div>
+            <hr>
+            <div class="result-item">
+                <span class="label">Luminance:</span>
+                <span class="value">{{ request.args.get('ssimcut1') }}</span>
+            </div>
+            <div class="result-item">
+                <span class="label">Contrast:</span>
+                <span class="value">{{ request.args.get('ssimcut2') }}</span>
+            </div>
+            <div class="result-item">
+                <span class="label">Structure:</span>
+                <span class="value">{{ request.args.get('ssimcut3') }}</span>
+            </div>
+        </div>
     </div>
     <div class="divider"></div>
     <!-- 內容 -->
     <h1>SSIM - Structural Similarity Index 結構相似性</h1>
 
     <hr>
-
     <h2><strong>SSIM = Luminance * Contrast * Structure</strong></h2>
+    <h3>原本用途為檢測圖片是否失真，比對原圖與比對圖的結構差異性。
+        計算的數字會介於0-1之間，越靠近0則越不相似，反之亦然。
+    </h3>
     <ul>
         <h3>Luminance 亮度</h3>
         <p>以圖片μ（平均值）得出</p>
@@ -45,9 +65,6 @@
             <p>$$\text{Structure: } S(x, y) = \frac{\mu_{xy} + C_3}{\sigma_x \sigma_y + C_3}$$</p>
         </div>
     </ul>
-    <hr>
-
-    <h2>reference</h2>
     <!-- 內容 -->
     <div class="divider"></div>
     {% include 'footer.html' %}
