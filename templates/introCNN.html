@@ -14,6 +14,10 @@
                 <img src="{{ request.args.get('image2') }}" alt="Image 2" style="width: 100%; height: 100%;">
             </div>
         </div>
+        <div class="result-container">
+            <div class="result-title">結果比較</div>
+            <div class="result-title">CNN: {{ request.args.get('cnn') }}</div>
+        </div>
     </div>
     <div class="divider"></div>
     <!-- 內容 -->
