@@ -27,11 +27,11 @@
                             <div class="result-value">{{ request.args.get('ssim') }}</div>
                         </div>
                         <div class="result-item">
-                            <button class="result-description" onclick="toIntroHSV('{{ request.args.get('image1') }}', '{{ request.args.get('image2') }}')">HSV</button>
+                            <button class="result-description" onclick="location.href='/index/compare/introHSV?image1={{ request.args.get('image1') }}&image2={{ request.args.get('image2') }}&hsv={{ request.args.get('hsv') }}';">HSV</button>
                             <div class="result-value">{{ request.args.get('hsv') }}</div>
                         </div>
                         <div class="result-item">
-                            <button class="result-description" onclick="location.href='/index/compare/introCNN?image1={{ request.args.get('image1') }}&image2={{ request.args.get('image2') }}';">CNN</button>
+                            <button class="result-description" onclick="location.href='/index/compare/introCNN?image1={{ request.args.get('image1') }}&image2={{ request.args.get('image2') }}&cnn={{ request.args.get('cnn') }}';">CNN</button>
                             <div class="result-value">{{ request.args.get('cnn') }}</div>
                         </div>
                     </div>

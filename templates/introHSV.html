@@ -14,7 +14,10 @@
                 <img src="{{ request.args.get('image2') }}" alt="Image 2" class="grid-image">
             </div>
         </div>
-        
+        <div class="result-container">
+            <div class="result-title">結果比較</div>
+            <div class="result-title">HSV: {{ request.args.get('hsv') }}</div>
+        </div>
     </div>
     <div class="divider"></div>
     <!-- 內容 -->
