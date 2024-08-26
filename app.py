@@ -36,7 +36,7 @@ def sanitize_filename(filename):
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     random_number = random.randint(1000, 9999)  # 生成 4 位的隨機數
     name, ext = os.path.splitext(filename)
-    new_filename = f"{name}_{timestamp}_{random_number}{ext}"
+    new_filename = f"{timestamp}_{random_number}{ext}"
     return re.sub(r'\s+', '_', new_filename)
 
 @app.route('/')
@@ -127,6 +127,9 @@ def read_file(file_path):
 def run_script():
     try:
         result = subprocess.run(['./runOverall.sh', save_path], capture_output=True, text=True, check=True)
+        print("STDOUT:", result.stdout)
+        print("STDERR:", result.stderr)
+        
         hsv = read_file(os.path.join(save_path, 'HSVresult.txt'))
         ssim = read_file(os.path.join(save_path, 'SSIMresult.txt'))
         cnn = read_file(os.path.join(save_path, 'CNNresult.txt'))
