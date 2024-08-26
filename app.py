@@ -191,7 +191,9 @@ def run_partial_script():
     try:
         
         result = subprocess.run(['./runPartial.sh', save_path], capture_output=True, text=True, check=True)
-        print(result.stdout)
+        print("STDOUT:", result.stdout)
+        print("STDERR:", result.stderr)
+
 
         hsv = read_file(os.path.join(save_path, 'PartialHSVresult.txt'))
         ssim = read_file(os.path.join(save_path, 'PartialSSIMresult.txt'))
@@ -206,35 +208,6 @@ def run_partial_script():
 def get_folder_name():
     return jsonify({"folder_name": save_path})
 
-# 處理 hsv 的圖片 把他切成九格
-@app.route('/process-images', methods=['GET'])
-def process_images():
-
-    # 將路徑最開頭的/ 去除
-    image1_path = request.args.get('image1').lstrip('/')
-    image2_path = request.args.get('image2').lstrip('/')
-    
-    # 確保資料夾存在
-    output_folder = f'{save_path}/processed_images'
-    os.makedirs(output_folder, exist_ok=True)
-    
-    # 處理圖像
-    def process_image(image_path, output_folder, prefix):
-        image = Image.open(image_path)
-        width, height = image.size
-        grid_width = width // 3
-        grid_height = height // 3
-        
-        for i in range(3):
-            for j in range(3):
-                box = (j * grid_width, i * grid_height, (j + 1) * grid_width, (i + 1) * grid_height)
-                grid_image = image.crop(box)
-                grid_image.save(os.path.join(output_folder, f'{prefix}-{i+1}-{j+1}.png'))
-    
-    process_image(image1_path, output_folder, 'img1')
-    process_image(image2_path, output_folder, 'img2')
-    
-    return jsonify({"status": "success", "message": "Images processed successfully"})
 # 清掉資料夾
 def cleanup():
     global dir_name
